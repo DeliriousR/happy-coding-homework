@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  add,
+  addTodo,
+  deleteTodo,
   selectItems,
 } from './todoListSlice';
 import { AddCircle } from '@material-ui/icons';
@@ -16,17 +17,23 @@ export function TodoList() {
   const submitTodo = (e) => {
     e.preventDefault();
     const newItem = {id: Date.now().toString(), info: title};
-    dispatch(add(newItem));
+    dispatch(addTodo(newItem));
     setTitle('');
   };
 
+  const removeTodo = (id) => {
+    dispatch(deleteTodo(id));
+  }
+
   const listItems = items.map((item) => {
     return (
-      <ListItem id={item.id} value={item.info} />
+      <ListItem
+        key={item.id}
+        value={item.info}
+        removeTodo={() => removeTodo(item.id)}
+      />
     );
   });
-
-  console.log(listItems);
 
   return (
     <div>

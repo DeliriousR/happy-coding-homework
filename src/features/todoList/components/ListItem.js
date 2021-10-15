@@ -3,11 +3,13 @@ import { Delete } from '@material-ui/icons';
 
 export function ListItem(props) {
   return (
-    <article key={props.id}>
+    <article>
       <span>{props.value}</span>
-      <span className="material-icons">
-        <Delete />
-      </span>
+      <button onClick={() => props.removeTodo()}>
+        <span className="material-icons">
+          <Delete />
+        </span>
+      </button>
     </article>
   );
 }
