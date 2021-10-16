@@ -1,5 +1,15 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
+## Installation
+
+After making a local clone of this repository, install all dependencies before running the program with the command `npm install`.
+
+Before installing, make sure you have the following versions or newer of NodeJS and npm:
+```
+node v14.16.0
+npm 6.14.11
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -11,6 +21,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
+
+### `npm run cypress-ui-local`
+
+Use this command in a separate terminal window after running `npm start`.
+
+This will open up the Cypress UI and allow users to run the Cypress test specs against the instance of the application running at [http://localhost:3000](http://localhost:3000).
 
 ### `npm test`
 

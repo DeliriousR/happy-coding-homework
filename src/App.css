@@ -1,39 +1,137 @@
 .App {
   text-align: center;
+  max-width: 600px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1.5rem;
+  background-color: #fceec5;
+  border-radius: 0.5rem;
+  overflow: auto;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-float infinite 3s ease-in-out;
-  }
-}
-
-.App-header {
-  min-height: 100vh;
+/*Navbar*/
+nav {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 0;
+  background: '#a3a39e';
+  width: 100%;
+}
+
+.navbarContainer {
+  width: 100%;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin-left: 5px;
 }
 
-.App-link {
-  color: rgb(112, 76, 182);
+nav a {
+  font-weight: 700;
+  padding: 0.25rem 1.0rem;
+  border: 1.2px solid black;
+  border-radius: 4px;
+  color: black;
+  background: #efefef;
 }
 
-@keyframes App-logo-float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+nav a:first-of-type {
+  margin-left: -1.5rem;
+}
+
+nav a:hover {
+  color: white;
+  background: #4f4e4d;
+}
+
+.navLinks {
+  display: flex;
+}
+
+.navLinks a {
+  margin-left: 5px;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+/*General*/
+
+html, body {
+  background-color: black;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+#root {
+  height: 100%;
+  vertical-align: middle;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.headerDiv {
+  height: 50px;
+  vertical-align: middle;
+}
+
+/*Todo List*/
+.listContainer {
+  margin-top: 1.0rem;
+}
+
+.inputContainer {
+  height: 37px;
+  display: flex;
+  border: solid black 1.2px;
+  border-radius: 0.25rem;
+  background-color: #efefef;
+  margin-bottom: 0.7rem;
+}
+
+.todoText {
+  width: 100%;
+  margin-left: 5px;
+  margin-right: 5px;
+  text-align: left;
+  overflow-wrap: break-word;
+}
+
+.todoInput {
+  width: 100%;
+  height: 100%;
+}
+
+.listItemContainer {
+  margin-top: 0.7rem;
+  margin-bottom: 0.7rem;
+  height: 37px;
+  display: flex;
+  background-color: #efefef;
+  border: solid black 1.2px;
+  border-radius: 0.25rem;
 }
