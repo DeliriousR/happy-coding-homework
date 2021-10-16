@@ -14,7 +14,9 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <h3>任務列表</h3>
+        <div className='headerDiv'>
+          <h2>任務列表</h2>
+        </div>
         <Navbar />
         <div>
           <Switch>

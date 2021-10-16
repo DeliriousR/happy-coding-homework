@@ -1,5 +1,53 @@
 .App {
   text-align: center;
+  max-width: 600px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1.5rem;
+  background-color: #fceec5;
+  border-radius: 0.5rem;
+  overflow: auto;
+}
+
+/*Navbar*/
+nav {
+  display: flex;
+  padding: 0;
+  background: '#a3a39e';
+  width: 100%;
+}
+
+.navbarContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-left: 5px;
+}
+
+nav a {
+  font-weight: 700;
+  padding: 0.25rem 1.0rem;
+  border-radius: 4px;
+  color: black;
+  background: #7d7c78;
+}
+
+nav a:first-of-type {
+  margin-left: -1.5rem;
+}
+
+nav a:hover {
+  color: white;
+  background: #4f4e4d;
+}
+
+.navLinks {
+  display: flex;
+}
+
+.navLinks a {
+  margin-left: 5px;
 }
 
 .material-icons {
@@ -25,4 +73,63 @@
 
   /* Support for IE. */
   font-feature-settings: 'liga';
+}
+
+/*General*/
+
+html, body {
+  background-color: black;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+#root {
+  height: 100%;
+  vertical-align: middle;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.headerDiv {
+  height: 50px;
+  vertical-align: middle;
+}
+
+/*Todo List*/
+.listContainer {
+  margin-top: 1.0rem;
+}
+
+.inputContainer {
+  height: 37px;
+  display: flex;
+  border: solid black 1.2px;
+  border-radius: 0.25rem;
+  background-color: #efefef;
+}
+
+.todoText {
+  width: 100%;
+  margin-left: 5px;
+  margin-right: 5px;
+  text-align: left;
+  overflow-wrap: break-word;
+}
+
+.todoInput {
+  width: 100%;
+  height: 100%;
+}
+
+.listItemContainer {
+  margin-top: 0.7rem;
+  margin-bottom: 0.7rem;
+  height: 37px;
+  display: flex;
+  background-color: #efefef;
+  border: solid black 1.2px;
+  border-radius: 0.25rem;
 }

@@ -20,19 +20,43 @@ export function TodoList(props) {
   const [editing, setEditing] = useState(false);
   const [editId, setEditId] = useState(null);
 
+  let addStyle;
+  if (submitDisabled) {
+    addStyle = {
+      color: '#065712',
+      opacity: 0.5,
+    };
+  } else {
+    addStyle = {
+      color: '#065712',
+    };
+  }
+
+  let saveStyle;
+  if (submitDisabled) {
+    saveStyle = {
+      color: '#060a57',
+      opacity: 0.5,
+    };
+  } else {
+    saveStyle = {
+      color: '#060a57',
+    };
+  }
+
   let submitIcon;
   if (editing) {
     submitIcon = (
-      <span className="material-icons">
+      <span className="material-icons" style={saveStyle}>
         <Save />
       </span>
-    )
+    );
   } else {
     submitIcon = (
-      <span className="material-icons">
+      <span className="material-icons" style={addStyle}>
         <AddCircle />
       </span>
-    )
+    );
   }
 
   const handleChange = (e) => {
@@ -103,16 +127,18 @@ export function TodoList(props) {
     );
   });
 
+  // User shouldn't be able to add new todos on the completed page
   return (
-    <div>
+    <div className='listContainer'>
       {
         filter !== 'completed' &&
         (
           <form onSubmit={submitTodo}>
-            <div>
+            <div className='inputContainer'>
               <input 
                 type="text"
-                placeholder={!editing ? '添加新任務' : '編輯任務訊息'}
+                className='todoInput'
+                placeholder={!editing ? '添加新任務' : '編輯任務内容'}
                 value={title}
                 onChange={(e) => handleChange(e)}
               />
