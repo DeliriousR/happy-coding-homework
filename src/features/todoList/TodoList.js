@@ -3,9 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   addTodo,
   deleteTodo,
+  editTodo,
   selectItems,
 } from './todoListSlice';
-import { AddCircle } from '@material-ui/icons';
+import { AddCircle, Save } from '@material-ui/icons';
 import { ListItem } from './components/ListItem';
 
 export function TodoList() {
@@ -13,16 +14,60 @@ export function TodoList() {
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState('');
+  const [submitDisabled, setSubmitDisabled] = useState(true);
+  const [editing, setEditing] = useState(false);
+  const [editId, setEditId] = useState(null);
+
+  let submitIcon;
+  if (editing) {
+    submitIcon = (
+      <span className="material-icons">
+        <Save />
+      </span>
+    )
+  } else {
+    submitIcon = (
+      <span className="material-icons">
+        <AddCircle />
+      </span>
+    )
+  }
+
+  const handleChange = (e) => {
+    setTitle(e.target.value);
+    if (e.target.value) {
+      setSubmitDisabled(false);
+    } else {
+      setSubmitDisabled(true);
+    }
+  }
 
   const submitTodo = (e) => {
     e.preventDefault();
-    const newItem = {id: Date.now().toString(), info: title};
-    dispatch(addTodo(newItem));
+    if (editing) {
+      const updatedInformation = {editId: editId, title: title};
+      console.log(updatedInformation);
+      dispatch(editTodo(updatedInformation));
+      setEditing(false);
+      setEditId(null);
+    } else {
+      const newItem = {id: Date.now().toString(), info: title};
+      dispatch(addTodo(newItem));
+    }
     setTitle('');
+    setSubmitDisabled(true)
   };
 
   const removeTodo = (id) => {
     dispatch(deleteTodo(id));
+  }
+
+  const editTodoInfo = (id) => {
+    const toBeEdited = items.find((item) => (item.id === id));
+    setEditing(true);
+    setEditId(toBeEdited.id);
+    setTitle(toBeEdited.info);
+    setSubmitDisabled(false);
   }
 
   const listItems = items.map((item) => {
@@ -31,6 +76,7 @@ export function TodoList() {
         key={item.id}
         value={item.info}
         removeTodo={() => removeTodo(item.id)}
+        editTodoInfo={() => editTodoInfo(item.id)}
       />
     );
   });
@@ -41,14 +87,12 @@ export function TodoList() {
         <div>
           <input 
             type="text"
-            placeholder="添加新任務"
+            placeholder={!editing ? '添加新任務' : '編輯任務訊息'}
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={(e) => handleChange(e)}
           />
-          <button type="submit">
-            <span className="material-icons">
-              <AddCircle />
-            </span>
+          <button type="submit" disabled={submitDisabled}>
+            {submitIcon}
           </button>
         </div>
       </form>
