@@ -21,13 +21,23 @@ export const todoListSlice = createSlice({
           return {...item, info: action.payload.title};
         }
         return item;
-      })
+      });
       state.items = [...updatedList];
-    }
+    },
+    toggleTodo: (state, action) => {
+      const stateItems = [...state.items];
+      const updatedList = stateItems.map(item => {
+        if (item.id === action.payload) {
+          return {...item, completed: !item.completed};
+        }
+        return item;
+      });
+      state.items = [...updatedList];
+    },
   },
 });
 
-export const { addTodo, deleteTodo, editTodo } = todoListSlice.actions;
+export const { addTodo, deleteTodo, editTodo, toggleTodo } = todoListSlice.actions;
 
 export const selectItems = (state) => state.todos.items;
 

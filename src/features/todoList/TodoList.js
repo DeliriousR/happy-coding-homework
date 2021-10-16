@@ -4,6 +4,7 @@ import {
   addTodo,
   deleteTodo,
   editTodo,
+  toggleTodo,
   selectItems,
 } from './todoListSlice';
 import { AddCircle, Save } from '@material-ui/icons';
@@ -51,7 +52,7 @@ export function TodoList() {
       setEditing(false);
       setEditId(null);
     } else {
-      const newItem = {id: Date.now().toString(), info: title};
+      const newItem = {id: Date.now().toString(), info: title, completed: false};
       dispatch(addTodo(newItem));
     }
     setTitle('');
@@ -70,13 +71,20 @@ export function TodoList() {
     setSubmitDisabled(false);
   }
 
+  const toggleTodoStatus = (id) => {
+    dispatch(toggleTodo(id));
+  }
+
   const listItems = items.map((item) => {
     return (
       <ListItem
         key={item.id}
+        id={item.id}
         value={item.info}
+        completed={item.completed}
         removeTodo={() => removeTodo(item.id)}
         editTodoInfo={() => editTodoInfo(item.id)}
+        toggleTodoStatus={() => toggleTodoStatus(item.id)}
       />
     );
   });
