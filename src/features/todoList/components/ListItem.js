@@ -21,23 +21,28 @@ export function ListItem(props) {
   }
 
   return (
-    <article className='listItemContainer'>
+    <article className='listItemContainer' data-qa={'todoItem'}>
       <span>
         <input
           type="checkbox"
           id={checkboxId}
+          data-qa={`checkbox-${props.value}`}
           checked={props.completed}
           onChange={() => props.toggleTodoStatus()}
         />
         <label htmlFor={checkboxId}></label>
       </span>
       <span className='todoText'>{props.value}</span>
-      <button onClick={() => props.editTodoInfo()}>
+      <button onClick={() => props.editTodoInfo()} data-qa={`edit-${props.value}`}>
         <span className="material-icons" style={editStyle}>
           <Edit />
         </span>
       </button>
-      <button onClick={() => props.removeTodo()} disabled={props.id === props.editId}>
+      <button
+        onClick={() => props.removeTodo()}
+        disabled={props.id === props.editId}
+        data-qa={`delete-${props.value}`}
+      >
         <span className="material-icons" style={deleteStyle}>
           <Delete />
         </span>

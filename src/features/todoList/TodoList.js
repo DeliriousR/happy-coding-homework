@@ -127,28 +127,23 @@ export function TodoList(props) {
     );
   });
 
-  // User shouldn't be able to add new todos on the completed page
   return (
     <div className='listContainer'>
-      {
-        filter !== 'completed' &&
-        (
-          <form onSubmit={submitTodo}>
-            <div className='inputContainer'>
-              <input 
-                type="text"
-                className='todoInput'
-                placeholder={!editing ? '添加新任務' : '編輯任務内容'}
-                value={title}
-                onChange={(e) => handleChange(e)}
-              />
-              <button type="submit" disabled={submitDisabled}>
-                {submitIcon}
-              </button>
-            </div>
-          </form>
-        )
-      }  
+      <form onSubmit={submitTodo}>
+        <div className='inputContainer'>
+          <input 
+            type="text"
+            className='todoInput'
+            data-qa="inputBar"
+            placeholder={!editing ? '添加新任務' : '編輯任務内容'}
+            value={title}
+            onChange={(e) => handleChange(e)}
+          />
+          <button type="submit" data-qa="submitButton" disabled={submitDisabled}>
+            {submitIcon}
+          </button>
+        </div>
+      </form>
 
       {listItems}
     </div>

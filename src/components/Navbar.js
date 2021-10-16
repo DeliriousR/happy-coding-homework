@@ -6,9 +6,9 @@ export const Navbar = () => {
     <nav>
       <div className='navbarContainer'>
         <div className='navLinks'>
-          <Link to="/">全部</Link>
-          <Link to="/incomplete">進行中</Link>
-          <Link to="/completed">已完成</Link>
+          <Link to="/" data-qa="allItems">全部</Link>
+          <Link to="/incomplete" data-qa="incomplete">進行中</Link>
+          <Link to="/completed" data-qa="completed">已完成</Link>
         </div>
       </div>
     </nav>
