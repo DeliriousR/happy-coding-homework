@@ -1,5 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
 import todoListReducer from '../features/todoList/todoListSlice';
 import { getLocalStorage } from './utils';
 
@@ -11,7 +10,6 @@ const preloadedState = {
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
     todos: todoListReducer,
   },
   preloadedState,
