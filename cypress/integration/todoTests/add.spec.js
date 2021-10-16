@@ -4,8 +4,8 @@ import { dqa } from "../../helper/utils"
 
 const todoName = Date.now()
 
-describe('the todo list', () => {
-  it('can add new todos', () => {
+describe('adding new todos', () => {
+  it('succeeds', () => {
     cy.visit(Cypress.env('host'))
     cy.get(dqa('submitButton')).should('be.disabled')
     cy.addTodo(todoName)

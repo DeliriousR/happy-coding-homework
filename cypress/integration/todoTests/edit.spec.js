@@ -5,13 +5,13 @@ import { dqa } from "../../helper/utils"
 const todoName = Date.now()
 const todoNameEdit = `${todoName}-NEW`
 
-describe('the todo list', () => {
+describe('editing todos', () => {
   beforeEach(() => {
     cy.visit(Cypress.env('host'))
     cy.addTodo(todoName)
   })
 
-  it('can edit todos', () => {
+  it('succeeds', () => {
     cy.get(dqa(`edit-${todoName}`)).click()
     cy.get(dqa(`delete-${todoName}`)).should('be.disabled')
 

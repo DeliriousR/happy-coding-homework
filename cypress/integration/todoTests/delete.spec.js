@@ -2,13 +2,13 @@
 
 const todoName = Date.now()
 
-describe('the todo list', () => {
+describe('deleting todos', () => {
   beforeEach(() => {
     cy.visit(Cypress.env('host'))
     cy.addTodo(todoName)
   })
 
-  it('can delete todos', () => {
+  it('succeeds', () => {
     cy.deleteTodo(todoName)
     cy.contains(todoName).should('not.exist')
   })
