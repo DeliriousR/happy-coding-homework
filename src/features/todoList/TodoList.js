@@ -10,9 +10,10 @@ import {
 import { AddCircle, Save } from '@material-ui/icons';
 import { ListItem } from './components/ListItem';
 
-export function TodoList() {
+export function TodoList(props) {
   const items = useSelector(selectItems);
   const dispatch = useDispatch();
+  const filter = props.filter;
 
   const [title, setTitle] = useState('');
   const [submitDisabled, setSubmitDisabled] = useState(true);
@@ -75,12 +76,25 @@ export function TodoList() {
     dispatch(toggleTodo(id));
   }
 
-  const listItems = items.map((item) => {
+  let filteredItems;
+  switch(filter) {
+    case 'incomplete':
+      filteredItems = items.filter(item => !item.completed);
+      break;
+    case 'completed':
+      filteredItems = items.filter(item => item.completed);
+      break;
+    default:
+      filteredItems = items;
+  }
+
+  const listItems = filteredItems.map((item) => {
     return (
       <ListItem
         key={item.id}
         id={item.id}
         value={item.info}
+        editId={editId}
         completed={item.completed}
         removeTodo={() => removeTodo(item.id)}
         editTodoInfo={() => editTodoInfo(item.id)}
@@ -91,19 +105,24 @@ export function TodoList() {
 
   return (
     <div>
-      <form onSubmit={submitTodo}>
-        <div>
-          <input 
-            type="text"
-            placeholder={!editing ? '添加新任務' : '編輯任務訊息'}
-            value={title}
-            onChange={(e) => handleChange(e)}
-          />
-          <button type="submit" disabled={submitDisabled}>
-            {submitIcon}
-          </button>
-        </div>
-      </form>
+      {
+        filter !== 'completed' &&
+        (
+          <form onSubmit={submitTodo}>
+            <div>
+              <input 
+                type="text"
+                placeholder={!editing ? '添加新任務' : '編輯任務訊息'}
+                value={title}
+                onChange={(e) => handleChange(e)}
+              />
+              <button type="submit" disabled={submitDisabled}>
+                {submitIcon}
+              </button>
+            </div>
+          </form>
+        )
+      }  
 
       {listItems}
     </div>

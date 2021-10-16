@@ -11,7 +11,7 @@ export function ListItem(props) {
           type="checkbox"
           id={checkboxId}
           checked={props.completed}
-          onClick={() => props.toggleTodoStatus()}
+          onChange={() => props.toggleTodoStatus()}
         />
         <label for={checkboxId}></label>
       </span>
@@ -21,7 +21,7 @@ export function ListItem(props) {
           <Edit />
         </span>
       </button>
-      <button onClick={() => props.removeTodo()}>
+      <button onClick={() => props.removeTodo()} disabled={props.id === props.editId}>
         <span className="material-icons">
           <Delete />
         </span>
